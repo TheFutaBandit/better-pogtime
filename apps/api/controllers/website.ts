@@ -57,6 +57,12 @@ export const getWebsiteController = async (req: Request, res: Response) => {
             }
         })
 
+        if(!website_response) {
+            return res.status(403).json({
+                message: "no website found"
+            })
+        }
+
 
 
         return res.status(200).json({
@@ -65,7 +71,7 @@ export const getWebsiteController = async (req: Request, res: Response) => {
     } catch (e) {
         console.log(e);
         return res.status(500).json({
-            message: "Database Error"
+            message: "DB error"
         })
     }
 }

@@ -98,6 +98,38 @@ describe("Website Status Get Endpoints", () => {
         }
     })
 
+    test("Website cannot be obtained with unauthorized credentials", async () => {
+        try {
+            const response = await axios.get(`${BACKEND_URL}/website/status/${website_id}`, {
+                headers: {
+                    Authorization: 'adsfasdfasdf'
+                }
+            });
+            expect(false, "control should not be reaching here").toBe(true);
+        } catch (e) {
+            if(axios.isAxiosError(e)) {
+                expect(e.status).toBe(401);
+            }
+            else throw e;
+        }
+    })
+
+    test("Website cannot be obtained with invalid website id", async () => {
+        try {
+            const response = await axios.get(`${BACKEND_URL}/website/status/${'adfadfadsf'}`, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            });
+            expect(false, "control should not be reaching here").toBe(true);
+        } catch (e) {
+            if(axios.isAxiosError(e)) {
+                expect(e.status).toBe(403);
+            }
+            else throw e;
+        }
+    })
+
 
 })
 
