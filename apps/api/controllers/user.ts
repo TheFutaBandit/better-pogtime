@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { authInput } from "../types";
 import { prisma } from "db/client";
 import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config";
 
 
 
@@ -80,9 +81,11 @@ export const signInController = async (req: Request, res: Response) => {
             })
         }
 
-        const secret = process.env.SECRET;
+        const user_id = get_user.id;
 
-        const token = jwt.sign({username}, secret!);
+        const secret = JWT_SECRET;
+
+        const token = jwt.sign({user_id}, secret!);
 
         return res.status(200).json({
             token

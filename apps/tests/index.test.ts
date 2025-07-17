@@ -4,7 +4,7 @@ import axios, {AxiosError} from 'axios';
 const BACKEND_URL  = 'http://localhost:3001/api/v1';
 const USERNAME = () => `futo-${Math.random()}`;
 
-describe("Auth Endpoints", () => {
+describe("Auth Sign-Up Endpoints", () => {
     test("user shouldn't be able to sign up with incorrect body", async () => {
         console.log(USERNAME());
         console.log(USERNAME());
