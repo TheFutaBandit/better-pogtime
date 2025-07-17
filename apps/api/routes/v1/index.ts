@@ -1,9 +1,12 @@
 import { Router } from "express";
-import userRouter from "./user";
+import userRouter from "./userRouter";
+import websiteRouter from "./wesbiteRouter";
 
 const v1Router = Router();
 
 v1Router.use("/auth", userRouter);
+
+v1Router.use("/website", websiteRouter);
 
 
 
@@ -30,10 +33,10 @@ v1Router.use("/auth", userRouter);
 //     }
 // })
 
-v1Router.get("/website", (req, res) => {
-    return res.json({
-        message: "hello there"
-    })
-});
+// v1Router.get("/website", (req, res) => {
+//     return res.json({
+//         message: "hello there"
+//     })
+// });
 
 export default v1Router;
