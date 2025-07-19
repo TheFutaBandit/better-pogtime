@@ -1,7 +1,8 @@
 import {describe, expect, test, it} from 'bun:test'
 import axios, {AxiosError} from 'axios';
+import { BACKEND_URL } from './config';
 
-const BACKEND_URL  = 'http://localhost:3001/api/v1';
+
 const USERNAME = () => `futo-${Math.random()}`;
 
 describe("Auth Sign-Up Endpoints", () => {

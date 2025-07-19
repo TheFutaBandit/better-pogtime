@@ -1,8 +1,8 @@
 import {describe, expect, test, it, beforeAll} from 'bun:test'
 import axios, {AxiosError} from 'axios';
 import { userAuthDetails, websiteDetails } from './testUtils';
+import { BACKEND_URL } from './config';
 
-const BACKEND_URL  = 'http://localhost:3001/api/v1';
 const USERNAME = () => `futo-${Math.random()}`;
 
 describe("Website Create Endpoints", () => {
@@ -70,6 +70,7 @@ describe("Website Create Endpoints", () => {
             expect(response.data.id).toBeDefined();
         } catch (e) {
             throw e;
+            // console.log(token);
         }
     })
 })
@@ -77,11 +78,15 @@ describe("Website Create Endpoints", () => {
 describe("Website Status Get Endpoints", () => {
     let website_id: String;
     let token : String;
+    let otherUserToken: String;
 
     beforeAll(async () => {
         let data = await websiteDetails();
         token = data.token;
         website_id = data.website_id;
+
+        let otherUserData = await userAuthDetails(); // Assuming this creates a new user and returns their token
+        otherUserToken = otherUserData.token;
     })
 
     test("Website can be obtained with valid credentials", async () => {
@@ -93,6 +98,7 @@ describe("Website Status Get Endpoints", () => {
             });
             expect(response.status).toBe(200);
             expect(response.data.website_response).toBeDefined();
+            console.log(response.data.website_response);
         } catch (e) {
             throw e;
         }
@@ -130,6 +136,21 @@ describe("Website Status Get Endpoints", () => {
         }
     })
 
-
+    test("One user cannot get the website of another user", async () => {
+        try {
+            const response = await axios.get(`${BACKEND_URL}/website/status/${website_id}`, {
+                headers: {
+                    Authorization: `${otherUserToken}`
+                }
+            });
+            expect(false, "control should not be reaching here").toBe(true);
+        } catch (e) {
+            if (axios.isAxiosError(e)) {
+                expect(e.response?.status).toBe(403); // Forbidden
+            } else {
+                throw e;
+            }
+        }
+    });
 })
 

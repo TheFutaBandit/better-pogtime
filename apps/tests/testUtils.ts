@@ -1,6 +1,6 @@
 import axios from "axios";
+import { BACKEND_URL } from './config';
 
-const BACKEND_URL  = 'http://localhost:3001/api/v1';
 const USERNAME = () => `futo-${Math.random()}`;
 
 export async function userAuthDetails() : Promise<{
