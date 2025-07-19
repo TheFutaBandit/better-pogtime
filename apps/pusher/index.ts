@@ -17,6 +17,10 @@ async function main() {
 
 }
 
+setInterval(() => {
+    main()
+}, 1000 * 3)
+
 
 main();
 
