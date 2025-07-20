@@ -59,7 +59,7 @@ describe("Website Create Endpoints", () => {
     test("Website can be created with valid credentials", async () => {
         try {
             const response = await axios.post(`${BACKEND_URL}/website`, {
-                url: "www.google.com"
+                url: "https://www.google.com"
             }, {
                 headers: {
                     Authorization: `${token}`

@@ -21,7 +21,7 @@ type Group = {
 
 type groupReadData = Group[];
 
-const g_i = "63d66427-15dd-414f-a4ee-6464726e64c8";
+const g_i = "13b23acd-e69b-43b3-a23e-48f985d56793";
 const c_i = "india-1";
 
 
@@ -43,15 +43,17 @@ async function main() {
     const worker_data = data[0].messages;
 
     const promise = worker_data!.map(async (item : Message) => {
-        new Promise((resolve, reject) => {
+        new Promise<void>((resolve, reject) => {
             const timeGet = item.id.slice(0,-3);
             const website_url = item.message.url;
+            console.log(website_url);
             const website_id = item.message.id;
+            const startTime = Date.now();
 
             axios.get(website_url)
                 .then(async () => {
-                    const currentTime = Date.now();
-                    const response_time = 5;
+                    const endTime = Date.now();
+                    const response_time = endTime - startTime;
                     await prisma.website_tick.create({
                         data : {
                             response_time_ms: response_time,
@@ -63,8 +65,8 @@ async function main() {
                     resolve;
                 })
                 .catch(async () => {
-                    const currentTime = Date.now();
-                    const response_time = 5;
+                    const endTime = Date.now();
+                    const response_time = endTime - startTime;;
                     await prisma.website_tick.create({
                         data : {
                             response_time_ms: response_time,
@@ -78,10 +80,9 @@ async function main() {
             })
     })
 
-    Promise.all(promise)
-    .then(() => {
-        console.log("done");
-    })
+    await Promise.all(promise)
+    
+    console.log("done");
         
 
     //send a xack

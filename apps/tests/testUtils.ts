@@ -31,7 +31,7 @@ export async function websiteDetails() : Promise<{
     let token = data.token;
 
     const website_response = await axios.post(`${BACKEND_URL}/website`, {
-        url: "www.google.com"
+        url: "https://www.google.com"
     }, {
         headers: {
             Authorization: `${token}`
