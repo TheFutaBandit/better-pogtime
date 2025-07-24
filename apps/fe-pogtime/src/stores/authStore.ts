@@ -1,4 +1,5 @@
 import {create} from 'zustand';
+import {persist} from 'zustand/middleware'
 
 type AuthAction = {
     loginUserToken: (token: AuthState['token']) => void,
@@ -11,14 +12,19 @@ type AuthState = {
     actions: AuthAction
 }
 
-const useAuthStore = create<AuthState>()((set) => ({
+const useAuthStore = create<AuthState>()(
+    persist((set) => ({
     token: "",
     user: "",
     actions: {
         loginUserToken: (token) => set(() => ({token})),
         loginUserUsername: (user) => set(() => ({user}))
-    }
-}));
+    }}),
+    {
+       name: "auth-storage" 
+    },
+    ),
+);
 
 export const useAuthToken = () => useAuthStore((state) => state.token);
 

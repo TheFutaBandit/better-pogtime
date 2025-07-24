@@ -56,7 +56,7 @@ export function useSignIn(): IUseSignIn {
             loginUserToken(token);
             loginUserUsername(user_payload.user_id);
             localStorage.setItem('token', token);
-            router.push('/')
+            router.push(`/dashboard/${user_payload.user_id}`)
         },
         onError: (error) => {
             console.log(error);

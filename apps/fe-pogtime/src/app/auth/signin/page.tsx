@@ -1,9 +1,12 @@
 'use client'
 
+import { useRedirectIfAuth } from "@/hooks/useAuth";
 import { useSignIn } from "@/hooks/useSignIn"
 import { useReducer, useRef, useState } from "react";
 
 const signInComponent = () => {
+    useRedirectIfAuth();
+    
     const {signInMutation, isLoading} = useSignIn();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
