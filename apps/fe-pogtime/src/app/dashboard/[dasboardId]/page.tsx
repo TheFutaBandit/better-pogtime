@@ -12,19 +12,12 @@ type Props = {
 async function getData(): Promise<Website[]> {
     // Fetch data from your API here.
     return [
-      {
-        url: "Google",
-        region: "usa",
-        response_time: 432,
-        status: "UP"
-      },
-      {
-        url: "Microsoft",
-        region: "usa",
-        response_time: 432,
-        status: "DOWN"
-      },
-      // ...
+        {
+            url: "Google",
+            region: "USA",
+            response_time: 432,
+            status: "UP"
+        },
     ]
   }
 
