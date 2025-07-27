@@ -75,3 +75,95 @@ export const getWebsiteController = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getUserWebsite = async (req: Request, res: Response) => {
+    const user_id = req.user_id;
+
+    try {
+        const website_data = await prisma.website.findMany({
+            where : {
+                user_id
+            },
+            select : {
+                url : true,
+                website_ticker : {
+                    select : {
+                        response_time_ms: true,
+                        status: true,
+                        region : {
+                            select : {
+                                name: true
+                            }
+                        }
+                    },
+                    orderBy : {
+                        createdAt: "desc"
+                    },
+                    take: 1
+                }
+
+            }
+        })
+
+        if(website_data === undefined) {
+            return res.status(403).json({
+                message: "data is undefined"
+            })
+        }
+
+        return res.status(200).json({
+            message: "Received Website Data",
+            data: website_data
+        })
+    } catch (err) {
+        res.status(500).json({
+            message: "error with data fetching"
+        })
+    }
+}
+
+export const getWebsiteTickController = async (req: Request, res: Response) => {
+    const user_id = req.user_id;
+
+    try {
+        const website_tick_data = await prisma.website.findMany({
+            where : {
+                user_id
+            },
+            select : {
+                url : true,
+                website_ticker : {
+                    select : {
+                        response_time_ms: true,
+                        status: true,
+                        region : {
+                            select : {
+                                name: true
+                            }
+                        },
+                        createdAt: true
+                    },
+                    orderBy : {
+                        createdAt: "desc"
+                    },
+                }
+
+            }
+        })
+
+        if(website_tick_data === undefined) {
+            return res.status(403).json({
+                message: "data is undefined"
+            })
+        }
+
+        return res.status(200).json({
+            message: "Received Website Data",
+            data: website_tick_data
+        })
+    } catch (err) {
+        res.status(500).json({
+            message: "error with data fetching"
+        })
+    }
+}
