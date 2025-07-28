@@ -14,6 +14,39 @@ interface DataTableProps<TData, TValue> {
     data: TData[]
 }
 
+// const placeholderData: Wesbite[] = [
+//     {
+//       url: "https://example.com",
+//       region: "North America",
+//       response_time: 120,
+//       status: "UP",
+//     },
+//     {
+//       url: "https://example.org",
+//       region: "Europe",
+//       response_time: 250,
+//       status: "DOWN",
+//     },
+//     {
+//       url: "https://example.net",
+//       region: "Asia",
+//       response_time: 300,
+//       status: "processing",
+//     },
+//     {
+//       url: "https://example.co",
+//       region: "South America",
+//       response_time: 180,
+//       status: "UP",
+//     },
+//     {
+//       url: "https://example.io",
+//       region: "Africa",
+//       response_time: 400,
+//       status: "DOWN",
+//     },
+//   ];
+
 export function DataTable<TData, TValue>({
     columns,
     data

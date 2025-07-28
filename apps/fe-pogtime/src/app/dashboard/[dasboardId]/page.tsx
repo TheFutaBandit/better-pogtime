@@ -4,26 +4,45 @@ import { DataTable } from "@/components/dashboard-components/data-table/data-tab
 import { SectionCards } from "@/components/dashboard-components/SectionCards";
 import { SiteHeader } from "@/components/dashboard-components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { useAuthToken } from "@/stores/authStore";
+import axios from "axios";
+import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query";
+import MainTable from "@/components/dashboard-components/data-table/main-table";
+import { websiteOptions } from "@/tanstackQuery/query-options";
+
 
 type Props = {
     
 }
 
-async function getData(): Promise<Website[]> {
-    // Fetch data from your API here.
-    return [
-        {
-            url: "Google",
-            region: "USA",
-            response_time: 432,
-            status: "UP"
-        },
-    ]
-  }
+type website_data = {
+    url: string;
+    website_ticker: {
+        response_time_ms: number;
+        status: 'UP' | 'DOWN' | 'UNKNOWN';
+        region: {
+            name: string;
+        };
+    }[];
+}[]
 
-export default async function page() {
-    const data = await getData();
+type table_data = 
+    {
+        url: string,
+        region: string,
+        response_time: number,
+        status: string
+    }[]
+
+
+
+export default function page() {
+    // const queryClient = new QueryClient();
+
+    // // void queryClient.prefetchQuery(websiteOptions);
+
     return (
+        <>
         <SidebarProvider>
             <AppSidebar variant="inset" />
             <SidebarInset>
@@ -32,12 +51,13 @@ export default async function page() {
                     <div className = "@container/main flex flex-1 flex-col gap-2">
                         <div className = "flex flex-col gap-4 py-4 md:gap-6 md:py-4">
                             <SectionCards />
-                            <DataTable columns={columns} data = {data} />
+                            <MainTable />
                         </div>
                     </div>
                 </div>
             </SidebarInset>
         </SidebarProvider>
+        </>
     )
 }
 

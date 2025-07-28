@@ -8,6 +8,8 @@ type Props = {
     children: React.ReactNode;
 }
 
+
+
 export const TanQueryProvider = ({children} : Props) => {
     const client = new QueryClient();
 

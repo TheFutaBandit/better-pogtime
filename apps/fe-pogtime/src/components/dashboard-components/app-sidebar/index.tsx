@@ -1,9 +1,10 @@
 "use client"
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { Globe, LayoutDashboardIcon, ShieldHalf, ShieldHalfIcon } from "lucide-react";
+import { Drill, Globe, LayoutDashboardIcon, ShieldHalf, ShieldHalfIcon } from "lucide-react";
 import Link from "next/link";
 import NavMain from "../nav-main";
+import NavUser from "../nav-user";
 
 const data = {
     navMain : [   
@@ -17,7 +18,12 @@ const data = {
         //     url: "/",
         //     icon: Globe
         // }
-    ]
+    ],
+    user : {
+        name: "FutaBandit",
+        email: "futobandit@gmail.com",
+        Avatar: "Drill"
+    }
 }
 
 function AppSidebar({...props} : React.ComponentProps<typeof Sidebar>) {
@@ -42,7 +48,7 @@ function AppSidebar({...props} : React.ComponentProps<typeof Sidebar>) {
                 <NavMain items = {data.navMain} />
             </SidebarContent>
             <SidebarFooter>
-
+                <NavUser user = {data.user} />
             </SidebarFooter>
         </Sidebar>
     )
