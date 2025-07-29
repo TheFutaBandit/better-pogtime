@@ -75,16 +75,16 @@ const getUserWebsiteTickData = async () => {
 //     queryFn: () => getUserWebsites()
 // })
 
-const website_tick_data = await queryClient.prefetchQuery({
-    queryKey: ["user-tick-data"],
-    queryFn: () => getUserWebsiteTickData()
-})
+// const website_tick_data = await queryClient.prefetchQuery({
+//     queryKey: ["user-tick-data"],
+//     queryFn: () => getUserWebsiteTickData()
+// })
 
 const layout = ({children} : PropType) => {
     return (
         <>
                 {children}
-                </>
+        </>
     )
 }
 

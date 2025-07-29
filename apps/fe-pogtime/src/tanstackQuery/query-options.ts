@@ -35,6 +35,22 @@ export const getUserWebsites = async (token: string) => {
 }
 
 export const websiteOptions = (token: string) => queryOptions({
-    queryKey: ['website-data'],
+    queryKey: ['website-data', token],
     queryFn: () => getUserWebsites(token)
 })
+
+export const postUserWebsites = async (token: string, url: string) => {
+    try {
+        const website_response = await axios.post("http://localhost:3001/api/v1/website", {
+                url
+            }, {
+                headers : {
+                    Authorization: token
+                }
+            })
+
+        return await website_response.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
