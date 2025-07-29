@@ -20,10 +20,11 @@ const placeHolderWebsiteData = {
 
 export const getUserWebsites = async (token: string) => {
     try {
-        const ti = `THE KEY IS IN GET USER WEBSITE IS 🔑🔑🔑🔑🔑🔑🔑🔑🔑`;
-        console.log(ti);
-        console.log(token);
-        const website_data_array = await axios.get("http://localhost:3001/api/v1/website");
+        const website_data_array = await axios.get("http://localhost:3001/api/v1/website", {
+            headers : {
+                Authorization : `${token}`
+            }
+        });
 
         return await website_data_array.data;
 

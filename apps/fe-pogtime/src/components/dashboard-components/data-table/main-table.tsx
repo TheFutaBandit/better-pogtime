@@ -8,10 +8,12 @@ import axios from "axios";
 import { websiteOptions } from "@/tanstackQuery/query-options";
 import { Suspense, useEffect, useState } from "react";
 import { Website } from "./columns";
+import { AuthenticatedTable } from "./AuthenticatedTable";
+import { TableSkeleton } from "./skeleton-table";
 
 
 const MainTable = () => {
-
+    const [w_data, set_w_data] = useState<string>("");
     
    
     // useEffect(() => {
@@ -19,10 +21,12 @@ const MainTable = () => {
     // }, []);
 
     const token = useAuthToken();
-    console.log("I AM PASSING THE TOKEN THAT IS ", token, " DOWN HERE")
-    const { data: website_data } = token
-        ? {data: `the token is ${token}`}
-        : { data: null };
+    
+
+    if(!token) {
+        return <TableSkeleton />
+    }
+    
 
     // console.log(website_data.data);
 
@@ -68,9 +72,8 @@ const MainTable = () => {
 
    
     return (
-        <>
-            <div> 🔑🔑🔑🔑🔑🔑🔑🔑🔑 = {website_data}</div>
-            {/* <div>{(data)}</div> */}
+        <>  
+           <AuthenticatedTable token = {token} />
         </>
         // <DataTable columns={columns} data = {data} />
     )

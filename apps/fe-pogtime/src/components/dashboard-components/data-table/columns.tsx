@@ -14,6 +14,46 @@ export type Website = {
     status: "processing" | "UP" | "DOWN"
 }
 
+// components/Loader.jsx
+
+export default function Loader({ width = 24, height = 24 }) {
+    return (
+      <svg
+        width={width}
+        height={height}
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-live="polite"
+        role="status"
+        fill = "white"
+      >
+        <title>Loading...</title>
+        <style>{`
+          .spinner_S1WN {
+            animation: spinner_MGfb .8s linear infinite;
+            animation-delay: -.8s;
+          }
+          .spinner_Km9P {
+            animation-delay: -.65s;
+          }
+          .spinner_JApP {
+            animation-delay: -.5s;
+          }
+          @keyframes spinner_MGfb {
+            93.75%, 100% {
+              opacity: .2;
+            }
+          }
+        `}</style>
+        <circle className="spinner_S1WN" cx="4" cy="12" r="3" />
+        <circle className="spinner_S1WN spinner_Km9P" cx="12" cy="12" r="3" />
+        <circle className="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
+      </svg>
+    );
+  }
+
+
+
 export const columns: ColumnDef<Website>[] = [
     {
         id: "select",
@@ -80,7 +120,7 @@ export const columns: ColumnDef<Website>[] = [
                 ) : (row.original.status === 'DOWN' ? (
                     <CircleMinusIcon className = "text-red-500 dark:text-red-400" />
                     ) : (
-                        <LoaderIcon />
+                        <Loader />
                     )    
                 )}
                 {row.original.status}
