@@ -9,6 +9,7 @@ import axios from "axios";
 import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query";
 import MainTable from "@/components/dashboard-components/data-table/main-table";
 import { websiteOptions } from "@/tanstackQuery/query-options";
+import MainChart from "@/components/dashboard-components/chart-area/main-chart";
 
 
 type Props = {
@@ -51,6 +52,9 @@ export default function page() {
                     <div className = "@container/main flex flex-1 flex-col gap-2">
                         <div className = "flex flex-col gap-4 py-4 md:gap-6 md:py-4">
                             <SectionCards />
+                            <div className="px-4 lg:px-6">
+                                <MainChart />
+                            </div>
                             <MainTable />
                         </div>
                     </div>

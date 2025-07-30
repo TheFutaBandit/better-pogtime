@@ -3,8 +3,8 @@ import {prisma} from "db/client";
 import { xGroupRead, xAckBulk } from "redisstream/client";
 //import something that like lets you read in groups 
 
-const REGION_ID = process.env.REGION_ID;
-const CONSUMER_ID = process.env.CONSUMER_ID;
+const REGION_ID = process.env.REGION_ID || "13b23acd-e69b-43b3-a23e-48f985d56793";
+const CONSUMER_ID = process.env.CONSUMER_ID || "india-1";
 
 type Message = {
     id: string,

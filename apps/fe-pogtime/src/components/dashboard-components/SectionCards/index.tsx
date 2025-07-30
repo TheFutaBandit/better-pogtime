@@ -32,22 +32,22 @@ const CardData = [
         trendingText: "string",
         footerTrendingText: "string"
     },
-    {
-        description: "string",
-        title: "string",
-        trending: true,
-        percentage: "string",
-        trendingText: "string",
-        footerTrendingText: "string"
-    },
-    {
-        description: "string",
-        title: "string",
-        trending: true,
-        percentage: "string",
-        trendingText: "string",
-        footerTrendingText: "string"
-    }
+    // {
+    //     description: "string",
+    //     title: "string",
+    //     trending: true,
+    //     percentage: "string",
+    //     trendingText: "string",
+    //     footerTrendingText: "string"
+    // },
+    // {
+    //     description: "string",
+    //     title: "string",
+    //     trending: true,
+    //     percentage: "string",
+    //     trendingText: "string",
+    //     footerTrendingText: "string"
+    // }
 ]
 
 export function SectionCard(

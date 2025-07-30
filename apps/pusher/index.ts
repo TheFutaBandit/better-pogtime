@@ -2,6 +2,8 @@ import { prisma } from "db/client";
 import { xAddBulk } from "redisstream/client";
 
 async function main() {
+    console.log('sending requests');
+
     try {
         const websites = await prisma.website.findMany({
             select : {
@@ -19,7 +21,7 @@ async function main() {
 
 setInterval(() => {
     main()
-}, 1000 * 3)
+}, 1000 * 20)
 
 
 main();
