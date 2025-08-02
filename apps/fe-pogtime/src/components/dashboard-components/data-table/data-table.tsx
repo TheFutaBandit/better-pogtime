@@ -1,12 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReactTable, SortingState, getSortedRowModel, ColumnFiltersState, getFilteredRowModel } from "@tanstack/react-table"
-import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon } from "lucide-react"
+import { ChevronLeftIcon, ChevronRightIcon, ChevronsLeftIcon, ChevronsRightIcon, CircleQuestionMarkIcon } from "lucide-react"
 import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
@@ -46,6 +47,19 @@ interface DataTableProps<TData, TValue> {
 //       status: "DOWN",
 //     },
 //   ];
+
+export function HoverCardFn() {
+    return (
+        <HoverCard openDelay={10}>
+            <HoverCardTrigger asChild>
+                <CircleQuestionMarkIcon height = {24} width = {24} strokeWidth={2} className="text-muted-foreground p-0 cursor-pointer"/>
+            </HoverCardTrigger>
+            <HoverCardContent className = "w-50 mr-7" sideOffset={5} alignOffset={-100} >
+                <div className = "px-2 py-1">Latest website ticks polling every 3 minutes.</div>
+            </HoverCardContent>
+        </HoverCard>
+    )
+}
 
 export function DataTable<TData, TValue>({
     columns,
@@ -96,9 +110,17 @@ export function DataTable<TData, TValue>({
                         <TabsTrigger value = "outline">Outline</TabsTrigger>
                     </TabsList>
 
-                    <div className = "flex items-center gap-2">
-
-                    </div>
+                    <div className = "flex items-center justify-between w-full">
+                        <Input 
+                            placeholder="Filter Websites"
+                            value = {(table.getColumn("url")?.getFilterValue() as string) ?? ""}
+                            onChange={(event) => 
+                                table.getColumn("url")?.setFilterValue(event.target.value)
+                            }
+                            className = "w-[250px]"
+                        />
+                        <HoverCardFn />
+                    </div>  
                 </div>
                 <TabsContent 
                     value = "outline"
