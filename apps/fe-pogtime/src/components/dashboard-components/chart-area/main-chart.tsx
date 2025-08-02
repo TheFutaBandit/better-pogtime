@@ -8,11 +8,15 @@ import { ChartSkeleton } from "./skeleton-chart";
 const MainChart = () => {
 
     const token = useAuthToken();
+
+    
     
 
     if(!token) {
         return <ChartSkeleton />
     }
+
+    
    
     return (
         <>  

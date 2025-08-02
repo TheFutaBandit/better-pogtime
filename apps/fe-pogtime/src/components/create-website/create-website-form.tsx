@@ -63,7 +63,7 @@ export default function MyForm() {
 
   function onSubmit(values: z.infer < typeof formSchema > ) {
     try {
-      console.log(token);
+      // console.log(token);
       mutate(values.Website_value);
       toast(
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">

@@ -6,27 +6,36 @@ import Link from "next/link";
 import NavMain from "../nav-main";
 import NavUser from "../nav-user";
 
-const data = {
-    navMain : [   
-        {
-            title: "Dashboard",
-            url: "/",
-            icon: LayoutDashboardIcon
-        },
-        // {
-        //     title: "Website",
-        //     url: "/",
-        //     icon: Globe
-        // }
-    ],
-    user : {
-        name: "FutaBandit",
-        email: "futobandit@gmail.com",
-        Avatar: "Drill"
-    }
-}
 
-function AppSidebar({...props} : React.ComponentProps<typeof Sidebar>) {
+
+
+
+
+function AppSidebar({params, ...props} : React.ComponentProps<typeof Sidebar>) {
+
+
+    const baseUrl = `/dashboard/${params}`
+    
+    const data = {
+        navMain : [   
+            {
+                title: "Dashboard",
+                url: `${baseUrl}/`,
+                icon: LayoutDashboardIcon
+            },
+            {
+                title: "Website",
+                url: `${baseUrl}/website`,
+                icon: Globe
+            }
+        ],
+        user : {
+            name: "FutaBandit",
+            email: "futobandit@gmail.com",
+            Avatar: "Drill"
+        }
+    }
+
     return (
         <Sidebar collapsible="offcanvas" {...props}>
             <SidebarHeader>

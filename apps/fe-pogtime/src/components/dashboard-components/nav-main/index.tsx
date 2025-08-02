@@ -4,6 +4,8 @@ import CreateWebsite from "@/components/create-website"
 import { Button } from "@/components/ui/button"
 import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSubButton } from "@/components/ui/sidebar"
 import { MailIcon, PlusCircleIcon, type LucideIcon } from "lucide-react"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 
 type PropItems = {
     items:{
@@ -14,6 +16,8 @@ type PropItems = {
 }
 
 function NavMain({items} : PropItems) {
+    const router = useRouter();
+    const path_name = usePathname();
     return (
         <SidebarGroup>
             <SidebarGroupContent className = "flex flex-col gap-2">
@@ -33,7 +37,11 @@ function NavMain({items} : PropItems) {
                 <SidebarMenu>
                     {items.map((item) => (
                         <SidebarMenuItem key = {item.title}>
-                            <SidebarMenuButton tooltip = {item.title} className = "cursor-pointer">
+                            <SidebarMenuButton 
+                                tooltip = {item.title} 
+                                className = "cursor-pointer"
+                                onClick={() => {router.push(`${item.url}`)}}
+                            >
                                 {item.icon && <item.icon />}
                                 <span>{item.title}  </span>
                             </SidebarMenuButton>

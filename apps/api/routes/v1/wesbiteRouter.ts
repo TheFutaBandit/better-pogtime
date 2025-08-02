@@ -10,7 +10,7 @@ websiteRouter.get("/", authMiddleware, getUserWebsite);
 
 websiteRouter.get("/status/:website_id", authMiddleware, getWebsiteController);
 
-websiteRouter.get("/website-tick-history", authMiddleware, getWebsiteTickController)
+websiteRouter.get("/tick-history", authMiddleware, getWebsiteTickController)
 
 
 

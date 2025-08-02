@@ -54,3 +54,24 @@ export const postUserWebsites = async (token: string, url: string) => {
         console.log(err);
     }
 }
+
+export const getUserWebsiteTicks = async (token: string) => {
+    try {
+        const website_tick_data_array = await axios.get("http://localhost:3001/api/v1/website/tick-history", {
+            headers : {
+                Authorization : `${token}`
+            }
+        });
+
+        return await website_tick_data_array.data;
+
+    } catch(err) {
+        console.log(err);
+        return placeHolderWebsiteData;
+    }
+}
+
+export const websiteTickOptions = (token: string) => queryOptions({
+    queryKey: ['website-tick-data', token],
+    queryFn: () => getUserWebsiteTicks(token)
+})

@@ -21,6 +21,8 @@ type website_interface = {
     }[];
 }
 
+
+
 export const AuthenticatedTable = ({token}: PropType) => {
 
     const {data: website_data, refetch} = useSuspenseQuery(websiteOptions(token));
@@ -33,7 +35,11 @@ export const AuthenticatedTable = ({token}: PropType) => {
         return () => clearInterval(interval)
     }, [])
 
-    console.log(website_data.data);
+    // console.log(website_data.data);
+
+   
+
+    if(!website_data.data) return <div>ERROR</div>
 
     const table_data : Website[] = website_data.data.map((item: website_interface) : Website => {
         return {   

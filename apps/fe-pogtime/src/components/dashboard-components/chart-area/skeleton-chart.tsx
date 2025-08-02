@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export function ChartSkeleton() {
+    
   return (
     <Card className="py-0">
       {/* Skeleton for the Card Header */}

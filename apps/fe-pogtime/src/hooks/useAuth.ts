@@ -18,17 +18,17 @@ export const useRequireAuth = (redirectPage: string = '/auth/sign-in') => {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const authTime = setTimeout(() => {
-            if(!isAuthenticated) {
-                router.push(redirectPage)
-            } else {
-                setIsLoading(false);
-            }
-        }, 100)
+    // useEffect(() => {
+    //     const authTime = setTimeout(() => {
+    //         if(!isAuthenticated) {
+    //             router.push(redirectPage)
+    //         } else {
+    //             setIsLoading(false);
+    //         }
+    //     }, 100)
 
-        return () => clearTimeout(authTime);
-    }, [isAuthenticated, redirectPage])
+    //     return () => clearTimeout(authTime);
+    // }, [isAuthenticated, redirectPage])
 
     return {
         isAuthenticated, 
@@ -41,7 +41,7 @@ export const useRedirectIfAuth = () => {
     const {user, isAuthenticated} = useAuthStatus();
     const router = useRouter();
 
-    console.log("am I running?")
+    // console.log("am I running?")
 
     useEffect(() => {
         if(isAuthenticated) {

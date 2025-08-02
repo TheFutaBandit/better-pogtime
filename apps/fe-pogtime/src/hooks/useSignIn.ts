@@ -15,7 +15,7 @@ interface JwtPayload {
 
 async function signin_func(username: string, password: string): Promise<IToken> {
     try {
-        console.log("sending request")
+        // console.log("sending request")
         const response = await axios.post("http://localhost:3001/api/v1/auth/sign-in", {
             username,
             password
