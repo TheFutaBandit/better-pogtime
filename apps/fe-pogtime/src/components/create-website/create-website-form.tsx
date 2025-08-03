@@ -42,9 +42,9 @@ const formSchema = z.object({
   Website_value: z.string().min(1).min(0).max(100)
 });
 
-export default function MyForm() {
+export default function MyForm({onFormSubmit} : {onFormSubmit: () => void}) {
 
-  const form = useForm < z.infer < typeof formSchema >> ({
+const form = useForm < z.infer < typeof formSchema >> ({
     resolver: zodResolver(formSchema),
     defaultValues: {
         Website_value: ""
@@ -70,7 +70,7 @@ export default function MyForm() {
           <code className="text-white">{JSON.stringify(values, null, 2)}</code>
         </pre>
       );
-
+      onFormSubmit();
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");

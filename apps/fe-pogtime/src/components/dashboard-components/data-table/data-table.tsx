@@ -54,8 +54,8 @@ export function HoverCardFn() {
             <HoverCardTrigger asChild>
                 <CircleQuestionMarkIcon height = {24} width = {24} strokeWidth={2} className="text-muted-foreground p-0 cursor-pointer"/>
             </HoverCardTrigger>
-            <HoverCardContent className = "w-50 mr-7" sideOffset={5} alignOffset={-100} >
-                <div className = "px-2 py-1">Latest website ticks polling every 3 minutes.</div>
+            <HoverCardContent className = "w-50 mr-7 p-2 " sideOffset={5} alignOffset={-100} >
+                <div className = "px-2 text-sm">Latest website ticks polling every 3 minutes.</div>
             </HoverCardContent>
         </HoverCard>
     )

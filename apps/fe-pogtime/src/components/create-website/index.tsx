@@ -39,7 +39,9 @@ const CreateWebsite = (props: Props) => {
                     <span>Quick Create</span>
                 </SidebarMenuButton>
             }>
-                <WebsiteForm />
+            {(closeModal) => (
+                <WebsiteForm onFormSubmit = {closeModal}  />  
+            )}
         </Modal>
     )
 }

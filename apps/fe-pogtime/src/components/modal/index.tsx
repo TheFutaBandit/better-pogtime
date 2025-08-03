@@ -1,15 +1,21 @@
-import { ReactNode } from "react"
+"use client"
+
+import { ReactNode, useState } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
 
 type Props = {
-    children: ReactNode,
+    children: (closeModal: () => void) => ReactNode,
     trigger: ReactNode,
     title: string,
     description: string
 }
 
 const modal = ({children, trigger, title, description} : Props) => {
-    return (<Dialog>
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
+
+    return (
+    <Dialog open = {open} onOpenChange={setOpen}>
         <DialogTrigger className = "" asChild>
             {trigger}
         </DialogTrigger>
@@ -18,7 +24,7 @@ const modal = ({children, trigger, title, description} : Props) => {
                 <DialogTitle>{title}</DialogTitle>
                 <DialogDescription>{description}</DialogDescription>
             </DialogHeader>
-                {children}
+                {children(closeModal)}
         </DialogContent>
     </Dialog>)
 }
