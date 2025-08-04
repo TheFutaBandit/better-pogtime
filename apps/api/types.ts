@@ -8,3 +8,10 @@ export const authInput = z.object({
 export const websiteInput = z.object({
     url: z.string(),
 })
+
+export const websiteRowInput = z.object({
+    url: z.string(),
+    region: z.string(),
+    response_time: z.number(),
+    status: z.any()
+})
