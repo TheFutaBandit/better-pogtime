@@ -20,7 +20,7 @@ model website {
   url            String
   time_added     DateTime       @default(now())
   user_id        String
-  user           user           @relation(fields: [user_id], references: [id])
+  user           user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
   website_ticker website_tick[]
 }
 
@@ -37,8 +37,8 @@ model website_tick {
   website_id       String
   region_id        String
   createdAt        DateTime       @default(now())
-  region           region         @relation(fields: [region_id], references: [id])
-  website          website        @relation(fields: [website_id], references: [id])
+  region           region         @relation(fields: [region_id], references: [id], onDelete: Cascade)
+  website          website        @relation(fields: [website_id], references: [id], onDelete: Cascade)
 }
 
 enum website_status {
