@@ -4,6 +4,7 @@ import axios from "axios";
 
 import {useAuthStore} from '@/stores/authStore'
 import axiosNew from "@/utils/axios";
+import { Website } from "@/components/dashboard-components/data-table/columns";
 
 const placeHolderWebsiteData = {
     url: "www.placeholder.com",
@@ -75,3 +76,17 @@ export const websiteTickOptions = (token: string) => queryOptions({
     queryKey: ['website-tick-data', token],
     queryFn: () => getUserWebsiteTicks(token)
 })
+
+export const deleteUserWebsite = async (website: Website, token: string) => {
+    console.log(website);
+    try {
+        const user_website = await axios.delete(`http://localhost:3001/api/v1/website/`, {
+            headers: {
+                Authorization: `${token}`
+            }, 
+            data: website
+        })
+    } catch (err) {
+        console.log(err);
+    }
+}

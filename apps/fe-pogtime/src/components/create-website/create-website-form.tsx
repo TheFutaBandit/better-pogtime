@@ -56,7 +56,7 @@ const form = useForm < z.infer < typeof formSchema >> ({
   const token = useAuthToken();
 
   const {mutate} = useMutation({
-    mutationKey: ["mutate-website-data"],
+    mutationKey: ["mutate-website-data", token],
     mutationFn: (websiteValue: string) => postUserWebsites(token, websiteValue),
     onSettled: async() => {console.log("what the helli"); return await client.invalidateQueries({queryKey: ['website-data', token]});}
   })

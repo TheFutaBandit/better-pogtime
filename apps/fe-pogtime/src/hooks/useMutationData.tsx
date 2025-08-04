@@ -1,10 +1,10 @@
-import { MutationFunction, MutationKey, useMutation, useQueryClient } from "@tanstack/react-query";
+import { MutationFunction, MutationKey, QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
 export const useMutationData = (
     mutationKey: MutationKey,
-    mutationFn: MutationFunction,
-    queryKey?: string,
+    mutationFn: MutationFunction<any, any>,
+    queryKey?: QueryKey,
     onSuccess?: () => void
 ) => {
     const  client = useQueryClient();
@@ -19,7 +19,7 @@ export const useMutationData = (
             })
         },
         onSettled: async() => {
-            return await client.invalidateQueries({queryKey: [queryKey]})
+            return await client.invalidateQueries({queryKey: queryKey})
         }
     })
 

@@ -3,9 +3,10 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 import {ColumnDef} from "@tanstack/react-table";
-import { ArrowUpDown, CheckCircle2Icon, CircleMinusIcon, LoaderIcon } from "lucide-react";
+import { ArrowUpDown, CheckCircle2Icon, CircleMinusIcon, LoaderIcon, MoreHorizontal, TrashIcon } from "lucide-react";
 
 export type Website = {
     url: string,
@@ -50,11 +51,14 @@ export default function Loader({ width = 24, height = 24 }) {
         <circle className="spinner_S1WN spinner_JApP" cx="20" cy="12" r="3" />
       </svg>
     );
-  }
+}
+
+interface UserWebsiteColumnsProps {
+    onDelete: (Website: Website) => void;
+}
 
 
-
-export const columns: ColumnDef<Website>[] = [
+export const getUserWebsiteColumns = ({onDelete} : UserWebsiteColumnsProps) : ColumnDef<Website>[] => [
     {
         id: "select",
         header: ({table}) => {
@@ -126,6 +130,36 @@ export const columns: ColumnDef<Website>[] = [
                 {row.original.status}
             </Badge>
         )
+    }, 
+    {
+        id: "actions",
+        cell: ({row}) => {
+            const website = row.original;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant = "ghost" className = "h-8 w-8 p-0">
+                            <span className = "sr-only">Open menu</span>
+                            <MoreHorizontal className = "h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align = "end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem
+                            onClick = {() => onDelete(row.original)}
+                        >
+                            <TrashIcon /> Delete
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }
     }
 ]
+    
+
+
+
+
 
