@@ -2,10 +2,9 @@
 
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Section, TrendingDownIcon, TrendingUpIcon } from "lucide-react";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { websiteTickOptions } from "@/tanstackQuery/query-options";
-import { useAuthToken } from "@/stores/authStore";
 import { useMemo } from "react";
 
 
@@ -29,7 +28,6 @@ const CardData = [
         footerTrendingText: "string"
     },
 ]
-
 
 export function SectionCard(
     {
@@ -82,7 +80,6 @@ type chartDataType = {
     date: string,
     Alerts: number
 }[]
-
 
 function covertToChartData(website_data: { data: website_tick_data[] }): chartDataType {
     const alertMaps = new Map<string, number>();

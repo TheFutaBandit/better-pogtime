@@ -12,7 +12,8 @@ import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[],
-    data: TData[]
+    data: TData[],
+    enableOptions?: boolean
 }
 
 // const placeholderData: Wesbite[] = [
@@ -63,7 +64,8 @@ export function HoverCardFn() {
 
 export function DataTable<TData, TValue>({
     columns,
-    data
+    data,
+    enableOptions = true
 } : DataTableProps<TData, TValue> ) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -86,23 +88,12 @@ export function DataTable<TData, TValue>({
         }
     })
 
-    {/* <div className = "flex items-center py-4">
-            <Input 
-                placeholder = "Filter Website..."
-                value={(table.getColumn("url")?.getFilterValue() as string) ?? ""}
-                onChange = {(event) => 
-                    table.getColumn("url")?.setFilterValue(event.target.value)
-                }
-                className = "max-w-sm"
-            />
-        </div> */}
-
     return ( 
             <Tabs 
                 defaultValue="outline"
                 className = "flex w-full flex-col justify-start gap-6"
             >
-                <div className = "flex items-center justify-between px-4 lg:px-6">
+                {enableOptions && <div className = "flex items-center justify-between px-4 lg:px-6">
                     <Label htmlFor = "view-selector" className="sr-only">
                         View
                     </Label>
@@ -121,7 +112,7 @@ export function DataTable<TData, TValue>({
                         />
                         <HoverCardFn />
                     </div>  
-                </div>
+                </div>}
                 <TabsContent 
                     value = "outline"
                     className = "relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"

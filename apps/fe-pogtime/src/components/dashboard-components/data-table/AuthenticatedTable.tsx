@@ -36,7 +36,6 @@ export const AuthenticatedTable = ({token}: PropType) => {
         return () => clearInterval(interval)
     }, [])
 
-    // console.log(website_data.data);
 
     if(!website_data.data) return <div>ERROR</div>
 
@@ -53,7 +52,7 @@ export const AuthenticatedTable = ({token}: PropType) => {
     const {mutate: delete_mutate, isPending} = useMutationData(
         ['delete-row'],
         (data : {website : Website}) => deleteUserWebsite(data.website, token),
-        ['website-data', token],
+        [['website-data', token], ['website-tick-data', token]],
     )
 
     const onDelete = useCallback(

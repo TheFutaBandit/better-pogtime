@@ -1,10 +1,10 @@
 'use client'
 
 import { useAuthToken } from "@/stores/authStore";
-import { AuthenticatedTable } from "./AuthenticatedTable";
 import { TableSkeleton } from "./skeleton-table";
+import { AuthenticatedTickTable } from "./AuthenticatedTickTable";
 
-const MainTable = () => {
+const MainTickTable = () => {
     const token = useAuthToken();   
 
     if(!token) {
@@ -13,9 +13,9 @@ const MainTable = () => {
        
     return (
         <>  
-           <AuthenticatedTable token = {token} />
+           <AuthenticatedTickTable token = {token} />
         </>
     )
 }
 
-export default MainTable;
+export default MainTickTable;

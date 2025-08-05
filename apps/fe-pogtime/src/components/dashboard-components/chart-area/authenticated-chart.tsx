@@ -76,8 +76,6 @@ const AuthenticatedChart = ({token}: Props) => {
 
     const {data: website_data, refetch} = useSuspenseQuery(websiteTickOptions(token));   
     
-
-
     const chartData = useMemo(() => {
             return covertToChartData(website_data);
         }, [website_data]);

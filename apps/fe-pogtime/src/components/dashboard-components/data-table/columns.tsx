@@ -15,6 +15,13 @@ export type Website = {
     status: "processing" | "UP" | "DOWN"
 }
 
+export type WebsiteTick = {
+    region: string,
+    response_time: number,
+    createdAt: Date,
+    status: "UNKNOWN" | "UP" | "DOWN",
+} 
+
 // components/Loader.jsx
 
 export default function Loader({ width = 24, height = 24 }) {
@@ -156,6 +163,84 @@ export const getUserWebsiteColumns = ({onDelete} : UserWebsiteColumnsProps) : Co
             )
         }
     }
+]
+
+export const getTickWebsiteColumns = () : ColumnDef<WebsiteTick>[] => [
+    {
+        id: "select",
+        header: ({table}) => {
+            <div className="flex items-center justify-center">
+                <Checkbox
+                    checked = {
+                        table.getIsAllPageRowsSelected() ||
+                        (table.getIsSomePageRowsSelected() && "indeterminate")
+                    }
+                    onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                    aria-label="select all"
+                />
+            </div>
+        },
+        cell: ({row}) => (
+            <div className = "flex items-center justify-center">
+                <Checkbox 
+                    checked = {row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            </div>
+        ),
+        enableSorting: false,
+        enableHiding: false
+    },
+    {
+        accessorKey: "createdAt",
+        header: ({column}) => {
+            return (
+                <div
+                >
+                    Time
+                </div>
+            )
+        },
+        cell: ({row}) => {
+            const date = row.getValue("createdAt") as string
+            const day = date.split('T')[0];
+            const time = date.split('T')[1].split('.')[0];
+            return <div className = "font-medium">{`${time} / ${day}`}</div>
+        }
+    },
+    {
+        accessorKey: "region",
+        header: "Region"
+    },
+    {
+        accessorKey: "response_time",
+        header: () => <div className = "">Response Time</div>,
+        cell: ({row}) => {
+            const time = row.getValue("response_time") as number
+            return <div className = "font-medium">{time}ms</div>
+        }
+    },
+    {
+        accessorKey: "status",
+        header: "Status",
+        cell: ({row}) => (
+            <Badge
+                variant = "outline"
+                className = "flex gap-1 px-1.5 text-muted-foreground [&_svg]:size-3"
+            >
+                {row.original.status === 'UP' ? (
+                    <CheckCircle2Icon className = "text-green-500 dark:text-green-400" />
+                ) : (row.original.status === 'DOWN' ? (
+                    <CircleMinusIcon className = "text-red-500 dark:text-red-400" />
+                    ) : (
+                        <Loader />
+                    )    
+                )}
+                {row.original.status}
+            </Badge>
+        )
+    }, 
 ]
     
 

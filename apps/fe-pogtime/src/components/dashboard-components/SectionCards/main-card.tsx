@@ -1,14 +1,8 @@
 'use client'
 
 import { useAuthToken } from "@/stores/authStore";
-import { useState } from "react";
 import SkeletonCard from "./skeleton-card";
 import { SectionCards } from ".";
-
-
-
-
-
 
 const MainSectionCard = () => {
     const token = useAuthToken();
