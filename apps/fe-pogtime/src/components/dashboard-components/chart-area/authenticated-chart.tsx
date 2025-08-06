@@ -74,7 +74,16 @@ const chartConfig = {
 
 const AuthenticatedChart = ({token}: Props) => {
 
-    const {data: website_data, refetch} = useSuspenseQuery(websiteTickOptions(token));   
+    const {data: website_data, refetch} = useSuspenseQuery(websiteTickOptions(token)); 
+    
+    useEffect(() => {
+        const interval = setInterval(() => {
+            refetch()
+        }, 20 * 1000)
+
+        return () => clearInterval(interval)
+    }, [])
+
     
     const chartData = useMemo(() => {
             return covertToChartData(website_data);

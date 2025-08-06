@@ -196,17 +196,15 @@ export const getTickWebsiteColumns = () : ColumnDef<WebsiteTick>[] => [
         accessorKey: "createdAt",
         header: ({column}) => {
             return (
-                <div
-                >
+                <div>
                     Time
                 </div>
             )
         },
         cell: ({row}) => {
-            const date = row.getValue("createdAt") as string
-            const day = date.split('T')[0];
-            const time = date.split('T')[1].split('.')[0];
-            return <div className = "font-medium">{`${time} / ${day}`}</div>
+            const date = row.getValue("createdAt") as string;
+            const local = new Date(date);
+            return <div className="font-medium">{local.toLocaleString()}</div>;
         }
     },
     {
@@ -242,7 +240,7 @@ export const getTickWebsiteColumns = () : ColumnDef<WebsiteTick>[] => [
         )
     }, 
 ]
-    
+
 
 
 

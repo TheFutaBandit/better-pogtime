@@ -1,6 +1,6 @@
 'use client'
 
-import { useSuspenseQuery } from "@tanstack/react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 import { getUserWebsiteColumns, Website } from "./columns"
 import { DataTable } from "./data-table"
 import { deleteUserWebsite, websiteOptions } from "@/tanstackQuery/query-options"

@@ -3,10 +3,11 @@
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { websiteTickOptions } from "@/tanstackQuery/query-options";
 import { useMemo } from "react";
 import SkeletonCard from "./skeleton-card";
+import Loader from "../data-table/columns";
 
 
 type CardProps = {
@@ -134,10 +135,11 @@ function lastMostUnstableTime(data: chartDataType) : string {
 
 export function SectionCards({token} : {token: string}) {
 
-    console.log("Do I re-render?");
-
-    const {data: website_data} = useSuspenseQuery(websiteTickOptions(token));
+    const {data: website_data} = useQuery(websiteTickOptions(token));
     // Always call hooks before any return
+    console.log("DO I CHANGE WITH WESBITE DATA? ", website_data);
+
+
     const chartData = useMemo(() => {
         return website_data && website_data.data && website_data.data.length > 0 ? covertToChartData(website_data) : [];
     }, [website_data]);
@@ -146,7 +148,10 @@ export function SectionCards({token} : {token: string}) {
         Alerts: chartData.reduce((acc, curr) => acc += curr.Alerts, 0)
     }), [chartData])
 
+
     const unstable_time_string = chartData.length === 0 ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1] || "").split('.')[0];
+
+    
 
     const card1_details = {
         description: "Net Alerts",
@@ -160,7 +165,7 @@ export function SectionCards({token} : {token: string}) {
 
     const card2_details = {
         description: "Most Unstable Time",
-        title: `${unstable_time_string}`,
+        title: `${unstable_time_string === "" ? "none yet" : unstable_time_string}`,
         trending: true,
         percentage: "string",
         trendingText: "Be aware of this moment!",
@@ -180,7 +185,12 @@ export function SectionCards({token} : {token: string}) {
         >
             {/* {CardData.map((item, index) => <SectionCard key = {item.description}/>)} */}
             {(card_details.length === 0) 
-            ? <div>Loading</div> 
+            ? (
+                <>
+                    <div className = "flex justify-center w-full">Loading</div> 
+                    <div className = "flex justify-center w-full">Loading</div> 
+                </>
+            )
             : card_details.map((item, index) => 
             <SectionCard 
                 key = {index}
