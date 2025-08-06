@@ -6,6 +6,7 @@ import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { websiteTickOptions } from "@/tanstackQuery/query-options";
 import { useMemo } from "react";
+import SkeletonCard from "./skeleton-card";
 
 
 type CardProps = {
@@ -134,9 +135,9 @@ function lastMostUnstableTime(data: chartDataType) : string {
 export function SectionCards({token} : {token: string}) {
 
     const {data: website_data} = useSuspenseQuery(websiteTickOptions(token));
-    
-    if(!website_data) {
-        return <div>Loading</div>
+    console.log("THE WEBSITE DATA IN CARDS", website_data);
+    if(!website_data || !website_data.data || website_data.data.length === 0) {
+        return <SkeletonCard />
     }
 
     const chartData = useMemo(() => {
@@ -147,7 +148,8 @@ export function SectionCards({token} : {token: string}) {
         Alerts: chartData.reduce((acc, curr) => acc += curr.Alerts, 0)
     }), [chartData])
 
-    const unstable_time_string = (lastMostUnstableTime(chartData).split("T")[1]).split('.')[0];
+
+    const unstable_time_string = chartData ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1]).split('.')[0];
 
     const card1_details = {
         description: "Net Alerts",

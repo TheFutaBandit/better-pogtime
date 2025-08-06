@@ -12,11 +12,9 @@ export default function page({children} : PropType){
     return (
         <div className = "flex flex-1 flex-col"> {/*this step doesn't seem necessary, but since we copying fuck it*/}
             <div className = "@container/main flex flex-1 flex-col gap-2">
-                <div className = "flex flex-col gap-4 py-4 md:gap-6 md:py-4">
+                <div className = "flex flex-col justify-center gap-4 px-20 lg:px-24 py-20 md:gap-6 md:py-20">
                     <WebsiteHeader />
-                    <div className="px-4 lg:px-6">
-                        <MainTickTable />
-                    </div>
+                    <MainTickTable />
                 </div>
             </div>
         </div>   

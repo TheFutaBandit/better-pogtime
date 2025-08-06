@@ -6,9 +6,11 @@ import { DataTable } from "./data-table"
 import { deleteUserWebsite, websiteOptions, websiteTickOptions } from "@/tanstackQuery/query-options"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { useMutationData } from "@/hooks/useMutationData"
+import { getWebsiteUrl, useWebsiteAction } from "@/stores/websiteStore"
 
 type PropType = {
-    token: string
+    token: string,
+    selectedWebsite: string
 }
 
 type website_interface = {
@@ -52,25 +54,15 @@ type website_tick =  {
 
 
 
-export const AuthenticatedTickTable = ({token}: PropType) => {
-
-    const [selectedWebsite, setSelectedWebsite] = useState('www.summertimesaga.com');
+export const AuthenticatedTickTable = ({token, selectedWebsite}: PropType) => {
 
     const {data: website_tick_data, refetch} = useSuspenseQuery(websiteTickOptions(token));
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         refetch()
-    //     }, 20 * 1000)
-
-    //     return () => clearInterval(interval)
-    // }, [])
 
     if(!website_tick_data.data) return <div>ERROR</div>
 
 
     const table_data_website : website_tick_data[] = website_tick_data.data.filter((item: website_interface, index: number) => {
-        return item.url === "www.summertimesaga.com";
+        return item.url === selectedWebsite;
     })
 
     if(table_data_website.length === 0) {
@@ -88,9 +80,6 @@ export const AuthenticatedTickTable = ({token}: PropType) => {
     })
 
     table_data = table_data.slice(0, 200);
-
-   
-
 
     const columns = useMemo(() => getTickWebsiteColumns(),[]);
 

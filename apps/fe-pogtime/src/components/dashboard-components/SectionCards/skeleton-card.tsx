@@ -6,6 +6,7 @@ function SingleCardSkeleton() {
     return (
         <Card className="@container/card">
             <CardHeader className="relative">
+                <p className="text-muted-foreground">To create a new website please click the "Quick Create" button.</p>
                 <Skeleton className="h-4 w-24" />
                 <Skeleton className="@[250px]/card:h-9 h-7 w-36" />
                 <div className="absolute right-4 top-4">
