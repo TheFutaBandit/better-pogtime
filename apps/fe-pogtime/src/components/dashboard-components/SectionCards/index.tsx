@@ -134,22 +134,19 @@ function lastMostUnstableTime(data: chartDataType) : string {
 
 export function SectionCards({token} : {token: string}) {
 
-    const {data: website_data} = useSuspenseQuery(websiteTickOptions(token));
-    console.log("THE WEBSITE DATA IN CARDS", website_data);
-    if(!website_data || !website_data.data || website_data.data.length === 0) {
-        return <SkeletonCard />
-    }
+    console.log("Do I re-render?");
 
+    const {data: website_data} = useSuspenseQuery(websiteTickOptions(token));
+    // Always call hooks before any return
     const chartData = useMemo(() => {
-        return covertToChartData(website_data);
+        return website_data && website_data.data && website_data.data.length > 0 ? covertToChartData(website_data) : [];
     }, [website_data]);
 
     const net_total = useMemo(() => ({
         Alerts: chartData.reduce((acc, curr) => acc += curr.Alerts, 0)
     }), [chartData])
 
-
-    const unstable_time_string = chartData ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1]).split('.')[0];
+    const unstable_time_string = chartData.length === 0 ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1] || "").split('.')[0];
 
     const card1_details = {
         description: "Net Alerts",
@@ -171,10 +168,11 @@ export function SectionCards({token} : {token: string}) {
         trendIcon: false
     }
 
-    const card_details = [
-        card1_details,
-        card2_details
-    ]
+    const card_details = chartData.length === 0 ? [] : [card1_details, card2_details];
+
+    if(!website_data || !website_data.data || website_data.data.length === 0) {
+        return <SkeletonCard />
+    }
     
     return (
         <div 
