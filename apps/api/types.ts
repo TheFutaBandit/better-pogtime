@@ -15,3 +15,8 @@ export const websiteRowInput = z.object({
     response_time: z.number(),
     status: z.any()
 })
+
+export const website_notify_input = z.object({
+    url: z.string(),
+    id: z.string()
+})

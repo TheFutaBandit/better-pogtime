@@ -1,12 +1,15 @@
 import { Router } from "express";
 import userRouter from "./userRouter";
 import websiteRouter from "./wesbiteRouter";
+import notifyRouter from "./notifyRouter";
 
 const v1Router = Router();
 
 v1Router.use("/auth", userRouter);
 
 v1Router.use("/website", websiteRouter);
+
+v1Router.use("/notify", notifyRouter);
 
 
 

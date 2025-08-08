@@ -31,6 +31,7 @@
       },
       "peerDependencies": {
         "db": "*",
+        "redisstream": "*",
         "typescript": "^5",
       },
     },
@@ -157,6 +158,16 @@
         "@types/bun": "latest",
       },
       "peerDependencies": {
+        "typescript": "^5",
+      },
+    },
+    "apps/ws": {
+      "name": "ws",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "redisstream": "*",
         "typescript": "^5",
       },
     },
@@ -1493,6 +1504,8 @@
     "worker": ["worker@workspace:apps/worker"],
 
     "wrappy": ["wrappy@1.0.2", "", {}, "sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ=="],
+
+    "ws": ["ws@workspace:apps/ws"],
 
     "yallist": ["yallist@5.0.0", "", {}, "sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw=="],
 

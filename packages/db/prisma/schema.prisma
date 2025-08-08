@@ -9,10 +9,11 @@ datasource db {
 }
 
 model user {
-  id       String    @id @default(uuid())
-  username String    @unique(map: "uq_user_username")
-  password String
-  websites website[]
+  id            String          @id @default(uuid())
+  username      String          @unique(map: "uq_user_username")
+  password      String
+  websites      website[]
+  notifications notifications[]
 }
 
 model website {
@@ -39,6 +40,13 @@ model website_tick {
   createdAt        DateTime       @default(now())
   region           region         @relation(fields: [region_id], references: [id], onDelete: Cascade)
   website          website        @relation(fields: [website_id], references: [id], onDelete: Cascade)
+}
+
+model notifications {
+  id      String @id @default(uuid())
+  user_id String
+  user    user   @relation(fields: [user_id], references: [id])
+  content String
 }
 
 enum website_status {

@@ -151,7 +151,6 @@ export function SectionCards({token} : {token: string}) {
 
     const unstable_time_string = chartData.length === 0 ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1] || "").split('.')[0];
 
-    
 
     const card1_details = {
         description: "Net Alerts",

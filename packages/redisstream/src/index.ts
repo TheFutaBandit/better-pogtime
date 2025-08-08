@@ -3,7 +3,7 @@ import { createClient } from "redis";
 const STREAM_NAME = "betteruptime:website";
 
 
-const client = await createClient()
+export const client = await createClient()
   .on('error', err => console.log('Redis Client Error', err))
   .on('connect', () => console.log("hurrah"))
   .connect();
@@ -72,3 +72,8 @@ export async function xAckBulk(group_id: string, data : any) {
         await xAck(group_id, item.id);
     })
 }
+
+export async function publishToWebsocket(user_id: string, website_id: string, website_url: string) {
+    await client.publish(`notify:${user_id}`, JSON.stringify({message: `website id - ${website_id}, url - ${website_url} has gone down! FIX YO SHIT`}))
+}
+
