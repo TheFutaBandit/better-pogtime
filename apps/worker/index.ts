@@ -66,7 +66,11 @@ async function main() {
                 })
                 .catch(async () => {
                     const endTime = Date.now();
-                    const response_time = endTime - startTime;;
+                    const response_time = endTime - startTime;
+                    axios.post("http://localhost:3001/api/v1/notify", {
+                        url: website_url,
+                        id: website_id
+                    });
                     await prisma.website_tick.create({
                         data : {
                             response_time_ms: response_time,

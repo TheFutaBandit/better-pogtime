@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "exports" : {
-    "./client" : "./src/index.ts"
+    "./client" : "./src/index.ts",
+    "./notification-client": "./src/notification.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

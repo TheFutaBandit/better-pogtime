@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { website_notify_input, websiteInput } from "../types";
 import { prisma } from "db/client";
-import { publishToWebsocket} from "redisstream/client"
+import { publishToWebsocket} from "redisstream/notification-client"
 
 export const notifyController = async (req: Request, res: Response) => {
     const website_data = website_notify_input.safeParse(req.body);

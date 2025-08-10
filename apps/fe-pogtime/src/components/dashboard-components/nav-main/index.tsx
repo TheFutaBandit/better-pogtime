@@ -6,6 +6,8 @@ import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, Side
 import { MailIcon, PlusCircleIcon, type LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
+import { useEffect } from "react"
+import {toast, ToastContainer} from 'react-toastify';
 
 type PropItems = {
     items:{
@@ -18,7 +20,20 @@ type PropItems = {
 function NavMain({items} : PropItems) {
     const router = useRouter();
     const path_name = usePathname();
+
+    const notify = () => toast('BITCH YO WEBSITE DOWN');
+    useEffect(() => {
+        const socket = new WebSocket("ws://localhost:3004");
+
+        socket.onmessage = (event) => {
+            // const message = JSON.parse(event.data);
+            notify();
+        }
+
+        () => socket.close();
+    })
     return (
+        <>
         <SidebarGroup>
             <SidebarGroupContent className = "flex flex-col gap-2">
                 <SidebarMenu>
@@ -50,6 +65,8 @@ function NavMain({items} : PropItems) {
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>
+        <ToastContainer />
+        </>
     )
 }
 

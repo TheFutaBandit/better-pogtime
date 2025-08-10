@@ -1,4 +1,6 @@
-import {client} from "redisstream/client"
+import {client} from "redisstream/notification-client"
+
+
 
 const server = Bun.serve({
     port: 3004,
@@ -11,11 +13,17 @@ const server = Bun.serve({
     websocket: {
         async open(ws) {
             console.log(`WE HAVE A CONNECTCTION ${ws}`)
-            ws.send(`FUCK YOU ${ws}`)
+            await client.pSubscribe("notify:*", (channel, message) => {
+                ws.send(`HELLO MOTHERFUCKER ${message}`)
+            })
         },
         async message(ws, message) {
             console.log(`Received ${message}`)
-            ws.send(`FUCK YOU ${message}`)
+            ws.send(`hello ${message}`)
+        },
+        async close(ws) {
+            console.log(`websocket ${ws} is closing`)
+            client.pUnsubscribe("notify:*");
         }
     }
 })
