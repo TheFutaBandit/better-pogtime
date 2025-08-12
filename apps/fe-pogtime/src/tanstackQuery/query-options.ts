@@ -90,3 +90,23 @@ export const deleteUserWebsite = async (website: Website, token: string) => {
         console.log(err);
     }
 }
+
+const getUserNotifications = async (token: string) => {
+    try {
+        const user_notifications = await axios.get(`http://localhost:3001/api/v1/notifications`, {
+            headers: {
+                Authorization: `${token}`
+            },
+        })
+
+        return await user_notifications.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const notificationOptions = (token: string) => queryOptions({
+    queryKey: ['user-notifications', token],
+    queryFn: () => getUserNotifications(token),
+    enabled: !!token,
+})

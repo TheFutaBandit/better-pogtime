@@ -42,7 +42,7 @@ export const notifyController = async (req: Request, res: Response) => {
             const insert_notification = await prisma.notifications.create({
                 data: {
                     user_id: u_id,
-                    content: `website id - ${id}, url - ${url} has gone down! FIX YO SHIT`
+                    content: `${url} has gone down! FIX YO SHIT`
                 }
             })
 

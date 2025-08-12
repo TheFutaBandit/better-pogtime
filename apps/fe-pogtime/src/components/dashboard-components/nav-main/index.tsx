@@ -9,6 +9,7 @@ import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import {Bounce, toast, ToastContainer} from 'react-toastify';
+import NotificationInbox from '../inbox'
 
 type PropItems = {
     items:{
@@ -79,14 +80,7 @@ function NavMain({items} : PropItems) {
                 <SidebarMenu>
                     <SidebarMenuItem className = "flex items-center gap-2">
                         <CreateWebsite />
-                        <Button 
-                            size = "icon"
-                            className = "h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0"
-                            variant = "outline"
-                        >
-                            <MailIcon />
-                            <span className = "sr-only">Inbox</span>
-                        </Button>
+                        <NotificationInbox />
                     </SidebarMenuItem>
                 </SidebarMenu>
                 <SidebarMenu>

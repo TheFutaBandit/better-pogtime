@@ -43,10 +43,11 @@ model website_tick {
 }
 
 model notifications {
-  id      String @id @default(uuid())
+  id      String  @id @default(uuid())
   user_id String
-  user    user   @relation(fields: [user_id], references: [id])
+  user    user    @relation(fields: [user_id], references: [id])
   content String
+  read    Boolean @default(false)
 }
 
 enum website_status {
