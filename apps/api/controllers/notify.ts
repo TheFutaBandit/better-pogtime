@@ -66,3 +66,40 @@ export const notifyController = async (req: Request, res: Response) => {
         })
     }
 }
+
+export const getUserNotificationController = async (req: Request, res: Response) => {
+    const user_id = req.user_id;
+
+    try {
+        const user_notifications = await prisma.notifications.findMany({
+            where : {
+                user_id,
+                read: false
+            },
+            select: {
+                content: true,
+                createdAt: true,
+            }
+
+        }) 
+
+
+        if(!user_notifications) {
+            res.status(400).json({
+                message: "failed to fetch data",
+                data: null
+            })
+            return;
+        }
+
+        return res.status(200).json({
+            message: "received data successfull",
+            data: user_notifications
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "internal server error",
+            data: undefined
+        })
+    }
+}
