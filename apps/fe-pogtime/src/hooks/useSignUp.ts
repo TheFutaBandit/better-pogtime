@@ -16,7 +16,7 @@ async function signup_func(username: string, password: string): Promise<IUser> {
 
         return await response.data;
     } catch(e) {
-        console.log(e);
+        //console.log(e);
         throw new Error("failed to receive data");
     }  
 }
@@ -44,7 +44,7 @@ export function useSignUp(): IUseSignUp {
             router.push('/auth/signin')
         },
         onError: (error) => {
-            console.log(error);
+            //console.log(error);
             enqueueSnackbar("Error during signup. Try again", {
                 variant: 'error'
             })

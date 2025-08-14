@@ -2,7 +2,7 @@ import { prisma } from "db/client";
 import { xAddBulk } from "redisstream/client";
 
 async function main() {
-    console.log('sending requests');
+    //console.log('sending requests');
 
     try {
         const websites = await prisma.website.findMany({
@@ -14,7 +14,7 @@ async function main() {
 
         await xAddBulk(websites);
     } catch (err) {
-        console.log("problem with fetching websites", err);
+        //console.log("problem with fetching websites", err);
     }
 
 }

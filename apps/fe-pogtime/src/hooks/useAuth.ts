@@ -41,7 +41,7 @@ export const useRedirectIfAuth = () => {
     const {user, isAuthenticated} = useAuthStatus();
     const router = useRouter();
 
-    // console.log("am I running?")
+    // //console.log("am I running?")
 
     useEffect(() => {
         if(isAuthenticated) {

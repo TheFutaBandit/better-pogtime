@@ -26,7 +26,7 @@ export const createWebsiteController = async (req: Request, res: Response) => {
         })
         
     } catch (e) {
-        console.log(e);
+        //console.log(e);
         return res.status(500).json({
             message: "error in putting in db"
         })
@@ -69,7 +69,7 @@ export const getWebsiteController = async (req: Request, res: Response) => {
             website_response: website_response
         })
     } catch (e) {
-        console.log(e);
+        //console.log(e);
         return res.status(500).json({
             message: "DB error"
         })
@@ -182,7 +182,7 @@ export const deleteWebsiteController = async (req: Request, res: Response) => {
 
     const user_id = req.user_id;
 
-    console.log(url);
+    //console.log(url);
 
 
     try {
@@ -193,7 +193,7 @@ export const deleteWebsiteController = async (req: Request, res: Response) => {
             },
         })
 
-        console.log(website_tick_data);
+        //console.log(website_tick_data);
 
         if(website_tick_data === undefined) {
             return res.status(403).json({
@@ -213,7 +213,7 @@ export const deleteWebsiteController = async (req: Request, res: Response) => {
             data: deleteRequest
         })
     } catch (err) {
-        console.log(err);
+        //console.log(err);
         res.status(500).json({
             
             message: "error with data deletion"

@@ -7,8 +7,8 @@ const USERNAME = () => `futo-${Math.random()}`;
 
 describe("Auth Sign-Up Endpoints", () => {
     test("user shouldn't be able to sign up with incorrect body", async () => {
-        console.log(USERNAME());
-        console.log(USERNAME());
+        //console.log(USERNAME());
+        //console.log(USERNAME());
         try {
             const response = await axios.post(`${BACKEND_URL}/auth/sign-up`, {
                 usrname: USERNAME(),

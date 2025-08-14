@@ -86,7 +86,7 @@ function AuthWebsiteHeader({token} : {token: string}) {
 
     const website = getWebsiteUrl();
 
-    console.log(websiteList);
+    //console.log(websiteList);
 
     return (
         <div className = "flex flex-col gap-5 lg:flex-row @container/card px-4 lg:px-6 items-center justify-between">

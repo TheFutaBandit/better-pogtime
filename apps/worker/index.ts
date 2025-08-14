@@ -30,13 +30,13 @@ async function main() {
         //we should be reading the data from the stream as a consumer group
     const data : any = await xGroupRead(REGION_ID!, CONSUMER_ID!);
 
-    // console.log(`The data we have received is ${data}`);
+    // //console.log(`The data we have received is ${data}`);
 
     if(!data) {
         continue;
     }
     // @ts-ignore
-    console.log(data[0].messages.length);
+    //console.log(data[0].messages.length);
 
 
     //after we have the data, we send each website a axios get request, if yes, prisma up, else prisma down
@@ -46,7 +46,7 @@ async function main() {
         new Promise<void>((resolve, reject) => {
             const timeGet = item.id.slice(0,-3);
             const website_url = item.message.url;
-            console.log(website_url);
+            //console.log(website_url);
             const website_id = item.message.id;
             const startTime = Date.now();
 
@@ -86,13 +86,13 @@ async function main() {
 
     await Promise.all(promise)
     
-    console.log("done");
+    //console.log("done");
         
 
     //send a xack
     await xAckBulk(REGION_ID!, data[0].messages)
 
-    console.log("ack sent");
+    //console.log("ack sent");
     }
 }
 

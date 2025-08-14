@@ -10,6 +10,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import {Bounce, toast, ToastContainer} from 'react-toastify';
 import NotificationInbox from '../inbox'
+import { useQueryClient } from "@tanstack/react-query"
 
 type PropItems = {
     items:{
@@ -26,6 +27,8 @@ function NavMain({items} : PropItems) {
     const [token, setToken] = useState<string>();
 
     const socketRef = useRef<WebSocket | null>(null);
+
+    const client = useQueryClient();
 
 
 
@@ -52,7 +55,7 @@ function NavMain({items} : PropItems) {
     useEffect(() => {
         if(!token) return;
 
-        console.log("AM I NOT WORKING")
+        //console.log("AM I NOT WORKING")
 
         const socket = new WebSocket(`ws://localhost:3004?user_id=${token}`);
 
@@ -60,13 +63,14 @@ function NavMain({items} : PropItems) {
 
         socket.onmessage = (event) => {
             const message = JSON.parse(event.data);
-            console.log(message.payload)
+            //console.log(message.payload)
             notify(message.payload.message.message);
+            client.invalidateQueries({queryKey: ['user-notifications', token]});
         }
         
 
         () => {
-            console.log("websocket cleaning up")
+            //console.log("websocket cleaning up")
             if(socketRef.current) {
                 socketRef.current.close();
                 socketRef.current = null;
@@ -106,6 +110,7 @@ function NavMain({items} : PropItems) {
             newestOnTop={false}
             closeOnClick={false}
             rtl={false}
+            limit = {3}
             pauseOnFocusLoss
             draggable
             pauseOnHover

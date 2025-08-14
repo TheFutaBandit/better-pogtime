@@ -137,7 +137,7 @@ export function SectionCards({token} : {token: string}) {
 
     const {data: website_data} = useQuery(websiteTickOptions(token));
     // Always call hooks before any return
-    console.log("DO I CHANGE WITH WESBITE DATA? ", website_data);
+    //console.log("DO I CHANGE WITH WESBITE DATA? ", website_data);
 
 
     const chartData = useMemo(() => {

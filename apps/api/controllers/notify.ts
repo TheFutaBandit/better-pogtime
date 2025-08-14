@@ -42,7 +42,7 @@ export const notifyController = async (req: Request, res: Response) => {
             const insert_notification = await prisma.notifications.create({
                 data: {
                     user_id: u_id,
-                    content: `${url} has gone down! FIX YO SHIT`
+                    content: `${url} has gone down!`
                 }
             })
 
@@ -101,5 +101,25 @@ export const getUserNotificationController = async (req: Request, res: Response)
             message: "internal server error",
             data: undefined
         })
+    }
+}
+
+export const markReadUserNotifications = async (req: Request, res: Response) => {
+    const user_id = req.user_id;
+
+    try {
+        const user_notification_update = await prisma.notifications.updateMany({
+            where: {
+                user_id: user_id
+            }, 
+            data : {
+                read: true
+            }
+        })
+
+        //console.log("successful update");
+        
+    } catch(error) {
+        //console.log(error);
     }
 }

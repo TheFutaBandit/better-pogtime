@@ -7,9 +7,9 @@ const axiosNew = axios.create({
 
 axiosNew.interceptors.request.use((config) => {
         const token = getAuthToken();
-        console.log('🔑 Token from store:', token); // Debug log
-        console.log('🔑 Token type:', typeof token); // Debug log
-        console.log('🔑 Token length:', token?.length); // Debug log
+        //console.log('🔑 Token from store:', token); // Debug log
+        //console.log('🔑 Token type:', typeof token); // Debug log
+        //console.log('🔑 Token length:', token?.length); // Debug log
         config.headers = config.headers || {};
         (config.headers as any).set('Authorization', token);
         return config;

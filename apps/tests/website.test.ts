@@ -14,7 +14,7 @@ describe("Website Create Endpoints", () => {
     })
 
     test("Website cannot be created with invalid body", async () => {
-        console.log(token);
+        //console.log(token);
         try {
             const response = await axios.post(`${BACKEND_URL}/website`, {
                 ulr: "adfadsfasdf"
@@ -70,7 +70,7 @@ describe("Website Create Endpoints", () => {
             expect(response.data.id).toBeDefined();
         } catch (e) {
             throw e;
-            // console.log(token);
+            // //console.log(token);
         }
     })
 })
@@ -98,7 +98,7 @@ describe("Website Status Get Endpoints", () => {
             });
             expect(response.status).toBe(200);
             expect(response.data.website_response).toBeDefined();
-            console.log(response.data.website_response);
+            //console.log(response.data.website_response);
         } catch (e) {
             throw e;
         }

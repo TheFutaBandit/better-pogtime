@@ -93,7 +93,7 @@ const AuthenticatedChart = ({token}: Props) => {
             Alerts: chartData.reduce((acc, curr) => acc += curr.Alerts, 0)
         }), [chartData])
 
-    console.log(chartData);
+    //console.log(chartData);
 
     const formatTime = (value: string) => {
         const date = new Date(value);

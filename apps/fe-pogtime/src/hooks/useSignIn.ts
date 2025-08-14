@@ -15,7 +15,7 @@ interface JwtPayload {
 
 async function signin_func(username: string, password: string): Promise<IToken> {
     try {
-        // console.log("sending request")
+        // //console.log("sending request")
         const response = await axios.post("http://localhost:3001/api/v1/auth/sign-in", {
             username,
             password
@@ -23,7 +23,7 @@ async function signin_func(username: string, password: string): Promise<IToken> 
 
         return await response.data;
     } catch(e) {
-        console.log(e);
+        //console.log(e);
         throw new Error("failed to receive data");
     }  
 }
@@ -59,7 +59,7 @@ export function useSignIn(): IUseSignIn {
             router.push(`/dashboard/${user_payload.user_id}`)
         },
         onError: (error) => {
-            console.log(error);
+            //console.log(error);
             enqueueSnackbar("Error during signin. Try again", {
                 variant: 'error'
             })

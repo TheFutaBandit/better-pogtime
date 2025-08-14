@@ -20,7 +20,7 @@ const SignUpComponent = () => {
     }
 
     function handleSignIn() {
-        // console.log("invoking signinMutation")
+        // //console.log("invoking signinMutation")
         return signUpMutation({username, password});
     }
 

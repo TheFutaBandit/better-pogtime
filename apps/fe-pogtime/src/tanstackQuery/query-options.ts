@@ -30,7 +30,7 @@ export const getUserWebsites = async (token: string) => {
         return await website_data_array.data;
 
     } catch(err) {
-        console.log(err);
+        //console.log(err);
         return placeHolderWebsiteData;
     }
 }
@@ -52,7 +52,7 @@ export const postUserWebsites = async (token: string, url: string) => {
 
         return await website_response.data;
     } catch (err) {
-        console.log(err);
+        //console.log(err);
     }
 }
 
@@ -67,7 +67,7 @@ export const getUserWebsiteTicks = async (token: string) => {
         return await website_tick_data_array.data;
 
     } catch(err) {
-        console.log(err);
+        //console.log(err);
         return placeHolderWebsiteData;
     }
 }
@@ -78,7 +78,7 @@ export const websiteTickOptions = (token: string) => queryOptions({
 })
 
 export const deleteUserWebsite = async (website: Website, token: string) => {
-    console.log(website);
+    //console.log(website);
     try {
         const user_website = await axios.delete(`http://localhost:3001/api/v1/website/`, {
             headers: {
@@ -87,13 +87,13 @@ export const deleteUserWebsite = async (website: Website, token: string) => {
             data: website
         })
     } catch (err) {
-        console.log(err);
+        //console.log(err);
     }
 }
 
 const getUserNotifications = async (token: string) => {
     try {
-        const user_notifications = await axios.get(`http://localhost:3001/api/v1/notifications`, {
+        const user_notifications = await axios.get(`http://localhost:3001/api/v1/notify`, {
             headers: {
                 Authorization: `${token}`
             },
@@ -101,7 +101,7 @@ const getUserNotifications = async (token: string) => {
 
         return await user_notifications.data;
     } catch (err) {
-        console.log(err);
+        //console.log(err);
     }
 }
 
