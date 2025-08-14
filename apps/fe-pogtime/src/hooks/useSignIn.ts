@@ -43,18 +43,19 @@ export function useSignIn(): IUseSignIn {
     const queryClient = useQueryClient();
     const router = useRouter();
 
-    const { loginUserToken, loginUserUsername } = useAuthActions();
+    const { loginUserToken, loginUserUsername, loginUserSetUsername } = useAuthActions();
 
     const {mutate: signInMutation, isPending : isLoading} = useMutation<IToken, unknown, { username: string, password: string}, unknown>({
         mutationFn: ({
             username,
             password
         }) => signin_func(username, password),
-        onSuccess: (data) => {
+        onSuccess: (data, variables) => {
             let token = data.token.replace("Bearer", "");
             const user_payload = jwtDecode(token) as JwtPayload;
             loginUserToken(token);
             loginUserUsername(user_payload.user_id);
+            loginUserSetUsername(variables.username);
             localStorage.setItem('token', token);
             router.push(`/dashboard/${user_payload.user_id}`)
         },

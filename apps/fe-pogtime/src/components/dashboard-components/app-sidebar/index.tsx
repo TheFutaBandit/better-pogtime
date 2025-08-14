@@ -5,15 +5,10 @@ import { Drill, Globe, LayoutDashboardIcon, ShieldHalf, ShieldHalfIcon } from "l
 import Link from "next/link";
 import NavMain from "../nav-main";
 import NavUser from "../nav-user";
-
-
-
-
-
+import { useAuthUser, useAuthUsername } from "@/stores/authStore";
 
 function AppSidebar({params, ...props} : React.ComponentProps<typeof Sidebar>) {
-
-
+    const username = useAuthUsername();
     const baseUrl = `/dashboard/${params}`
     
     const data = {
@@ -30,8 +25,8 @@ function AppSidebar({params, ...props} : React.ComponentProps<typeof Sidebar>) {
             }
         ],
         user : {
-            name: "FutaBandit",
-            email: "futobandit@gmail.com",
+            name: username || "FutaBandit",
+            email: `Welcome user!`,
             Avatar: "Drill"
         }
     }
