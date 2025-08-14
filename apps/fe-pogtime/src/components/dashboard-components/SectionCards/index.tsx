@@ -149,7 +149,14 @@ export function SectionCards({token} : {token: string}) {
     }), [chartData])
 
 
-    const unstable_time_string = chartData.length === 0 ? "Not yet available" : (lastMostUnstableTime(chartData).split("T")[1] || "").split('.')[0];
+    const unstable_time_string = chartData.length === 0
+        ? "Not yet available"
+        : (() => {
+            const iso = lastMostUnstableTime(chartData);
+            if (!iso) return "none yet";
+            const dateObj = new Date(iso);
+            return dateObj.toLocaleString(); // local time string
+        })();
 
 
     const card1_details = {
