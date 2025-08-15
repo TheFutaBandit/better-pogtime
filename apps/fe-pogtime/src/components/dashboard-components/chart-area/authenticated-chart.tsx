@@ -108,7 +108,7 @@ const AuthenticatedChart = ({token}: Props) => {
             <Card className="py-0">
                 <CardHeader className="text-center py-8">
                     <CardTitle>No Alert Data</CardTitle>
-                    <CardDescription>No alerts found in the past 3 hours</CardDescription>
+                    <CardDescription>No alerts found in the past 3 hours. Use quick create to insert your websites!</CardDescription>
                 </CardHeader>
             </Card>
         );
@@ -123,7 +123,7 @@ const AuthenticatedChart = ({token}: Props) => {
                         className = "font-medium text-xl"
                     >Website Chart - Alerts</CardTitle>
                     <CardDescription>
-                        Showing total Alerts for the last 3 hours
+                        Showing total Alerts for the last 3 hours 
                     </CardDescription>
                 </div>
                 <div className = "flex">

@@ -1,37 +1,17 @@
 'use client'
 
+import SignUpForm from "@/components/auth-components/SignUpForm";
 import { useSignUp } from "@/hooks/useSignUp"
 import { useReducer, useRef, useState } from "react";
 
-const SignUpComponent = () => {
-    const {signUpMutation, isLoading} = useSignUp();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-
-    const inputRef = useRef<HTMLInputElement | null>(null);
-    const passwordRef = useRef<HTMLInputElement | null>(null);
-
-    function handleUsername() {
-        setUsername(inputRef.current!.value)
-    }
-
-    function handlePassword() {
-        setPassword(passwordRef.current!.value)
-    }
-
-    function handleSignIn() {
-        // //console.log("invoking signinMutation")
-        return signUpMutation({username, password});
-    }
 
 
+export default function SignupPage() {
     return (
-        <div className = "w-min-[150px] h-min-[20px]">
-            <input type = "text" placeholder = "enter username" ref = {inputRef} onChange={handleUsername} disabled = {isLoading}/>
-            <input type = "text" placeholder = "enter password" ref = {passwordRef} onChange={handlePassword} disabled = {isLoading}/>
-            <button onClick={() => handleSignIn()} className = "cursor-pointer">Submit</button>
+        <div className = "bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
+            <div className = "w-full max-w-sm md:max-w-3xl">
+                <SignUpForm />
+            </div>
         </div>
     )
 }
-
-export default SignUpComponent;

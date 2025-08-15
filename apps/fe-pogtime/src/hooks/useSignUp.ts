@@ -42,9 +42,10 @@ export function useSignUp(): IUseSignUp {
         }) => signup_func(username, password),
         onSuccess: () => {
             router.push('/auth/signin')
+            console.log("GOOD SHIT")
         },
         onError: (error) => {
-            //console.log(error);
+            console.log(error);
             enqueueSnackbar("Error during signup. Try again", {
                 variant: 'error'
             })

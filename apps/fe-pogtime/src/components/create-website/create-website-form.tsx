@@ -97,7 +97,7 @@ const form = useForm < z.infer < typeof formSchema >> ({
                 type="text"
                 {...field} />
               </FormControl>
-              <FormDescription>Enter the URL to be monitored</FormDescription>
+              <FormDescription>{`Enter the URL to be monitored (Please include "https://" at the start)`}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
