@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "figma:specs": "node ./scripts/figma/fetch_figma_specs.mjs --file Rc6vdigxzueeVd5x9oJ5UX --ids 4:2"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
