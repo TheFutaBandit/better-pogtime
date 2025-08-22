@@ -125,11 +125,149 @@
   font-display: swap;
 }
 
+/* Sharp Grotesk Font Family */
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Thin15.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Light15.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Book15.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Medium15.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-SemiBold15.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Bold15.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sharp Grotesk';
+  src: url('/fonts/Sharp_Grotesk/SharpGrotesk-Black15.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Editorial Old Font Family */
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-Ultralight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-UltralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-Ultrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Editorial Old';
+  src: url('/fonts/PPEditorialOld/PPEditorialOld-UltraboldItalic.otf') format('opentype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html, body {
+    @apply w-full h-full m-0 p-0;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Hide scrollbar by default, show only when scrolling */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    transition: width 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar:hover {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Firefox */
+  html {
+    scrollbar-width: none;
+  }
+  
+  html:hover {
+    scrollbar-width: thin;
   }
 }
