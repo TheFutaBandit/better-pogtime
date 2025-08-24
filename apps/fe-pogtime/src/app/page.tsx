@@ -20,6 +20,8 @@ function Page() {
     gsap.set("h1", { y: 200, willChange: "transform" });
     gsap.set(".item", { y: 200, willChange: "transform" });
     gsap.set("footer", { y: 200, willChange: "transform" });
+    // Hide the loader initially to prevent seeing the top of images
+    gsap.set(".loader", { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" });
 
     // Create timeline with initial delay
     const tl = gsap.timeline({ 
@@ -49,7 +51,7 @@ function Page() {
       ease: "power3.inOut"
     }, "-=1")
     .to(".loader", {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         duration: 1,
         ease: "power3.inOut"
     }, "-=0.5")
