@@ -93,6 +93,10 @@ export function SignUpForm({
                 >
 
                 </video>
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(0,0,0,0.92)_85%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/85 via-transparent to-black/95" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.96)_0%,transparent_60%)]" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-[radial-gradient(ellipse_at_bottom,rgba(0,0,0,0.96)_0%,transparent_60%)]" />
             </div>
           </CardContent>
         </Card>
