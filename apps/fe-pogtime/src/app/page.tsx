@@ -14,14 +14,12 @@ function Page() {
   useGSAP(() => {
 
     // Use will-change for better GPU acceleration
-    gsap.set(".img", { y: 500, willChange: "transform" });
-    gsap.set(".loader-imgs", { x: 550, willChange: "transform" });
+    gsap.set(".img", { y: 600, willChange: "transform" });
+    gsap.set(".loader-imgs", { x: 500, willChange: "transform" });
     gsap.set(".nav-item", { y: 25, opacity: 0, willChange: "transform, opacity" });
     gsap.set("h1", { y: 200, willChange: "transform" });
     gsap.set(".item", { y: 200, willChange: "transform" });
     gsap.set("footer", { y: 200, willChange: "transform" });
-    // Hide the loader initially to prevent seeing the top of images
-    gsap.set(".loader", { clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" });
 
     // Create timeline with initial delay
     const tl = gsap.timeline({ 
@@ -51,10 +49,10 @@ function Page() {
       ease: "power3.inOut"
     }, "-=1")
     .to(".loader", {
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         duration: 1,
         ease: "power3.inOut"
-    }, "-=0.5")
+    }, "-=0.2")
     .to(".nav-item, h1, footer, .item", {
           y: 0,
           opacity: 1,
@@ -76,6 +74,9 @@ function Page() {
                       </div>
                       <div className="img relative flex-1 [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]">
                           <img className="w-full h-full object-cover" src="/images/optimized/3.webp" alt="logo-3" width="400" height="300" />
+                      </div>
+                      <div className="img relative flex-1 [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]" id = "loader-logo">
+                          <img className="w-full h-full object-cover" src="/images/optimized/logo_image_2.webp" alt="logo_image" width="400" height="300" />
                       </div>
                       <div className="img relative flex-1 [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]">
                           <img className="w-full h-full object-cover" src="/images/optimized/4.webp" alt="logo-4" width="400" height="300" />
