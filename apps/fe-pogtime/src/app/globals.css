@@ -240,7 +240,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* font-family: 'Sharp Grotesk', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; */
   }
+
+  /* Removed global opacity hiding to avoid affecting non-landing pages */
   
   /* Hide scrollbar by default, show only when scrolling */
   ::-webkit-scrollbar {

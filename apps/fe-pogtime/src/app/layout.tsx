@@ -31,6 +31,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Neue+Montreal:wght@400;500;700&display=swap" rel="stylesheet" />
+        {/* Critical CSS to prevent FOUC on animated elements */}
+        <style dangerouslySetInnerHTML={{ __html: `.gsap-init{visibility:hidden}` }} />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

@@ -40,13 +40,13 @@ export function SignUpForm({
             <form className="p-6 md:p-8" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col items-center text-center">
-                  <h1 className="text-2xl font-bold">Welcome User!</h1>
+                  <h1 className="text-3xl md:text-4xl font-bold">Welcome User!</h1>
                   <p className="text-muted-foreground text-balance">
                     Sign Up to Navigate the Seas better.
                   </p>
                 </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="username">Username</Label>
+                <div className="grid gap-2">
+                  <Label htmlFor="username" className="text-base md:text-lg">Username</Label>
                   <Input
                     id="username"
                     type="text"
@@ -57,9 +57,9 @@ export function SignUpForm({
                     disabled = {isLoading}
                   />
                 </div>
-                <div className="grid gap-3">
+                <div className="grid gap-2">
                   <div className="flex items-center">
-                    <Label htmlFor="password">Password</Label>
+                    <Label htmlFor="password" className="text-base md:text-lg">Password</Label>
                   </div>
                   <Input 
                     id="password" 
@@ -70,7 +70,7 @@ export function SignUpForm({
                     disabled = {isLoading}
                 />
                 </div>
-                <Button className = "cursor-pointer w-full" type="submit">
+                <Button className = "cursor-pointer w-full text-base md:text-lg" type="submit">
                   Signup
                 </Button>
                 
