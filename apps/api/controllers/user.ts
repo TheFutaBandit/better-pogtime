@@ -75,11 +75,7 @@ export const signInController = async (req: Request, res: Response) => {
             })
         }
 
-        if(get_user.password != password) {
-            return res.status(403).json({
-                message: "invalid password"
-            })
-        }
+         
 
         const user_id = get_user.id;
 
